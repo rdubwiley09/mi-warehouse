@@ -1,0 +1,10 @@
+mi_cfr_duckdb:
+  target: dev
+  
+  outputs:
+    dev:
+      type: duckdb
+      external_root: ../data
+      ##path: ./data/db.duckdb
+      extensions:
+        - parquet
