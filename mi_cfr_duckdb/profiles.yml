@@ -4,7 +4,11 @@ mi_cfr_duckdb:
   outputs:
     dev:
       type: duckdb
+      module_paths:
+        - "plugins"
       external_root: ../data
       ##path: ./data/db.duckdb
       extensions:
         - parquet
+      plugins:
+        - module: create_function_plugin
