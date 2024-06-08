@@ -144,6 +144,13 @@ This is a folder that does not come standard with dbt, but is additional functio
     conn.create_function("function", function)
 within the configure_connection function.
 
+### Macros
+#### Find yourself writing a lot of boilerplate or want to functionalize your SQL? Macros are that idea in dbt:
+    {% macro choose_nonnull_value(first_column_name, second_column_name, out_column_name) %}
+        CASE WHEN {{ first_column_name }} IS NULL THEN {{ second_column_name }} ELSE {{ first_column_name }} END AS {{ out_column_name }}
+    {% endmacro %}
+If you'd like to learn more I recommend the dbt guide [here](https://docs.getdbt.com/docs/build/jinja-macros)
+
 ### Docs
 #### We can generate the docs to see our data model graph and can serve it with:
     dbt docs generate
@@ -159,3 +166,11 @@ This generates a pickle file to allow us to do the ML POC. This requires you to 
 
 ### using_the_dbt_python_package
 This gives an alternative way to implement python processes in the middle of your modeling by using the dbt cli to automate runs of subsets of models.
+
+### more_on_duckdb_python_api
+This gives more explanation of calling python functions within duckdb. Super useful to hack python or API calls into the middle of your dbt run.
+
+## Further reading
+dbt docs: [here](https://docs.getdbt.com/docs/introduction)
+duckdb docs: [here](https://duckdb.org/docs/index)
+dbt-duckdb github repo: [here](https://github.com/duckdb/dbt-duckdb)

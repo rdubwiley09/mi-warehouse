@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-
 NEEDED_FOLDERS = [
     './data/mart',
     './data/ml_models',
