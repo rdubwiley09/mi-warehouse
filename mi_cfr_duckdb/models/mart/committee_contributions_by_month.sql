@@ -31,12 +31,6 @@ output AS (
     FROM contributions
     LEFT JOIN party_lookup
     ON contributions.cfr_committee_id = party_lookup.cfr_committee_id
-    GROUP BY
-        contributions.cfr_committee_id,
-        implied_party,
-        committee_type,
-        committee_common_name,
-        donation_received_year,
-        donation_received_month
+    GROUP BY ALL
 )
 SELECT * FROM output

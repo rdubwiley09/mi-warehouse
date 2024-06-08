@@ -38,3 +38,5 @@ models:
       +materialized: view
     mart:
       +materialized: external
+    ml:
+      +enabled: false

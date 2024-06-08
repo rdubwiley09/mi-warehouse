@@ -31,12 +31,6 @@ output AS (
     FROM expenditures
     LEFT JOIN party_lookup
     ON expenditures.cfr_committee_id = party_lookup.cfr_committee_id
-    GROUP BY
-        expenditures.cfr_committee_id,
-        implied_party,
-        committee_type,
-        committee_common_name,
-        expenditure_year,
-        expenditure_month
+    GROUP BY ALL
 )
 SELECT * FROM output

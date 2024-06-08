@@ -8,6 +8,8 @@ from functions.return_hello_array import return_hello_array
 from functions.numpy_dummy import return_numpy_one
 from functions.pydantic_example import pydantic_example
 from functions.string_index import get_substring
+from functions.classify_expenditure import classify_expenditure
+
 
 class Plugin(BasePlugin):
     def configure_connection(self, conn: DuckDBPyConnection):
@@ -15,7 +17,7 @@ class Plugin(BasePlugin):
         conn.create_function("get_substring", get_substring)
         conn.create_function("return_numpy_one", return_numpy_one)
         conn.create_function("pydantic_example", pydantic_example)
-
+        conn.create_function("classify_expenditure", classify_expenditure)
 
     def store(self, target_config: TargetConfig):
         assert target_config.config.get("key") == "value"
