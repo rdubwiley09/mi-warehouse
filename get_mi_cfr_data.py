@@ -9,7 +9,8 @@ DATA_DIR = "./data/raw"
 
 NEEDED_YEARS = [
     2022,
-    2023
+    2023,
+    2024
 ]
 
 NEEDED_DATA = [
@@ -33,11 +34,19 @@ def get_urls():
                     if response.status_code == 200:
                         needed_urls.append(attempted_url)
                     else:
-                        break 
-                urls.append(needed_urls)    
+                        if i == 0:
+                            attempted_url = f"https://miboecfr.nictusa.com/cfr/dumpall/cfrdetail/{year}_mi_cfr_{data}.zip"
+                            response = requests.get(attempted_url)
+                            if response.status_code == 200:
+                                needed_urls.append(attempted_url)
+                        else:
+                            break 
+                if needed_urls:
+                    urls.append(needed_urls)    
             else:
                 urls.append(f"https://miboecfr.nictusa.com/cfr/dumpall/cfrdetail/{year}_mi_cfr_{data}.zip")
     return urls
+
 
 def get_dataframe_from_url(url):
     response = requests.get(url)

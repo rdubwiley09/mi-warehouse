@@ -11,3 +11,9 @@
 
 ## You can then verify it's installed by running
     ./duckdb
+
+
+pip install wheel setuptools pip --upgrade
+
+dbt docs generate
+dbt docs serve --port 8085
