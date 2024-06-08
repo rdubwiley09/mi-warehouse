@@ -7,7 +7,7 @@ mi_cfr_duckdb:
       module_paths:
         - "plugins"
       external_root: ../data
-      ##path: ./data/db.duckdb
+      #path: ./data/db.duckdb
       extensions:
         - parquet
       plugins:
