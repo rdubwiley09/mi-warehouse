@@ -171,6 +171,6 @@ This gives an alternative way to implement python processes in the middle of you
 This gives more explanation of calling python functions within duckdb. Super useful to hack python or API calls into the middle of your dbt run.
 
 ## Further reading
-dbt docs: [here](https://docs.getdbt.com/docs/introduction)
-duckdb docs: [here](https://duckdb.org/docs/index)
-dbt-duckdb github repo: [here](https://github.com/duckdb/dbt-duckdb)
+#### dbt docs: [here](https://docs.getdbt.com/docs/introduction)
+#### duckdb docs: [here](https://duckdb.org/docs/index)
+#### dbt-duckdb github repo: [here](https://github.com/duckdb/dbt-duckdb)
