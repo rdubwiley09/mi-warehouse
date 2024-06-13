@@ -3,8 +3,9 @@
 WITH output AS (
     SELECT
         predicted_label,
-        COUNT(*) AS COUNT
-    FROM read_parquet('../data/ml/model_output.parquet', union_by_name=True)
+        COUNT(*) AS count
+    FROM READ_PARQUET('../data/ml/model_output.parquet', union_by_name = True)
     GROUP BY ALL
 )
+
 SELECT * FROM output

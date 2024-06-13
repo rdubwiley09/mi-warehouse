@@ -11,6 +11,7 @@ WITH contributions AS (
         total_raised
     FROM {{ ref('state_party_contributions') }}
 ),
+
 pivoted AS (
     PIVOT contributions
     ON party
@@ -18,13 +19,15 @@ pivoted AS (
     GROUP BY branch, donation_received_year
     ORDER BY donation_received_year
 ),
-OUTPUT AS (
+
+output AS (
     SELECT
         branch,
         donation_received_year,
-        ROUND(Democratic,0) AS total_democratic,
-        ROUND(Republican,0) AS total_republican,
-        ROUND(Democratic-Republican,0) AS fundraising_margin
+        ROUND(democratic, 0) AS total_democratic,
+        ROUND(republican, 0) AS total_republican,
+        ROUND(democratic - republican, 0) AS fundraising_margin
     FROM pivoted
 )
+
 SELECT * FROM output

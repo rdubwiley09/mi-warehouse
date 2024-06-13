@@ -8,7 +8,8 @@ NEEDED_FOLDERS = [
     './data/ml',
     './data/raw',
     './data/staging',
-    './data/staging/lookups'
+    './data/staging/lookups',
+    './data/raw/election_results'
 ]
 
 def create_folders():
