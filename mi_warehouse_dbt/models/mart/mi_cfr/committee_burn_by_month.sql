@@ -1,4 +1,4 @@
-{{ config(materialized='external', location='../data/mart/committee_burn_by_month.parquet', format='parquet') }}
+{{ config(materialized='external', location='../data/mart/mi_cfr/committee_burn_by_month.parquet', format='parquet') }}
 
 WITH contributions AS (
     SELECT

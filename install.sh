@@ -9,6 +9,7 @@ source venv/bin/activate
 python -m pip install -r requirements.txt
 python scaffold_folders.py
 python get_mi_cfr_data.py
+python get_mi_election_data.py
 
-cd mi_cfr_duckdb_dbt
+cd mi_warehouse_dbt
 dbt run

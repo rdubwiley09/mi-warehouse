@@ -1,4 +1,4 @@
-{{ config(materialized='external', location='../data/mart/udf_examples.parquet', format='parquet') }}
+{{ config(materialized='external', location='../data/mart/mi_cfr/udf_examples.parquet', format='parquet') }}
 
 SELECT
     return_hello_array() AS hello,

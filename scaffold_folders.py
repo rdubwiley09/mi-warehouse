@@ -4,6 +4,7 @@ import shutil
 
 NEEDED_FOLDERS = [
     './data/mart',
+    './data/mart/mi_cfr'
     './data/ml_models',
     './data/ml',
     './data/raw',

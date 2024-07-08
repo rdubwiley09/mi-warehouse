@@ -1,4 +1,4 @@
-{{ config(materialized='external', location='../data/mart/committee_expenditures_by_month.parquet', format='parquet') }}
+{{ config(materialized='external', location='../data/mart/mi_cfr/committee_expenditures_by_month.parquet', format='parquet') }}
 
 WITH expenditures AS (
     SELECT

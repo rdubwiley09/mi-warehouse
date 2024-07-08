@@ -1,4 +1,4 @@
-{{ config(materialized='external', location='../data/mart/state_party_contributions_pivot.parquet', format='parquet') }}
+{{ config(materialized='external', location='../data/mart/mi_cfr/state_party_contributions_pivot.parquet', format='parquet') }}
 
 WITH contributions AS (
     SELECT
