@@ -1,0 +1,10 @@
+.env
+venv/
+new_venv/
+data/
+logs/
+target/
+dbt_packages/
+logs/
+.vscode
+__pycache__/
