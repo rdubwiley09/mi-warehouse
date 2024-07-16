@@ -1,3 +1,5 @@
+{{ config(materialized='external', location='../data/mart/mi_elections/int_vote_by_candidate.parquet', format='parquet') }}
+
 WITH vote AS (
     SELECT
         election_year,
@@ -14,6 +16,7 @@ WITH vote AS (
         precinct_votes,
         office_code_description
     FROM {{ ref('stg_vote')}}
+    WHERE candidate_id != 0 AND precinct_votes!=0
 ),
 candidate AS (
     SELECT
@@ -24,6 +27,7 @@ candidate AS (
         candidate_middle_name,
         candidate_party_name
     FROM {{ ref('stg_name')}}
+    GROUP BY ALL
 ),
 output AS (
     SELECT

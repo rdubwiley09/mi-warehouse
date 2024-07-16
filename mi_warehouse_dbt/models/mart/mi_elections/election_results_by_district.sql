@@ -7,6 +7,7 @@ WITH votes_by_candidate AS (
         office_code,
         office_code_description,
         district_code,
+        district_code/100 AS district,
         status_code,
         candidate_id,
         candidate_last_name,
@@ -20,20 +21,38 @@ WITH votes_by_candidate AS (
         precinct_label,
         precinct_votes
     FROM  {{ ref('int_vote_by_candidate') }}
+    WHERE status_code=0
 ),
-district_grouped AS (
+bad_district_eliminator AS (
     SELECT
         election_year,
         office_code,
         office_code_description,
-        district_code/100 AS district,
+        district,
+        candidate_party_name,
+        MIN(candidate_id) AS good_candidate_id
+    FROM votes_by_candidate
+    GROUP BY ALL
+),
+district_grouped AS (
+    SELECT
+        votes_by_candidate.election_year,
+        votes_by_candidate.office_code,
+        votes_by_candidate.office_code_description,
+        votes_by_candidate.district,
         candidate_id,
         candidate_first_name,
         candidate_last_name,
-        candidate_party_name,
+        votes_by_candidate.candidate_party_name,
         SUM(precinct_votes) AS votes
     FROM votes_by_candidate
-    WHERE candidate_party_name IN ('DEM', 'REP') AND office_code BETWEEN 1 and 8
+    JOIN bad_district_eliminator
+    ON 
+        votes_by_candidate.election_year = bad_district_eliminator.election_year AND
+        votes_by_candidate.office_code = bad_district_eliminator.office_code AND
+        votes_by_candidate.district = bad_district_eliminator.district AND
+        votes_by_candidate.candidate_id = bad_district_eliminator.good_candidate_id
+    WHERE votes_by_candidate.candidate_party_name IN ('DEM', 'REP') AND votes_by_candidate.office_code BETWEEN 1 and 8
     GROUP BY ALL
 ),
 pivoted AS (
