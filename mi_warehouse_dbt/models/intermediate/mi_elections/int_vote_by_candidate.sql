@@ -11,7 +11,8 @@ WITH vote AS (
         ward_number,
         precinct_number,
         precinct_label,
-        precinct_votes
+        precinct_votes,
+        office_code_description
     FROM {{ ref('stg_vote')}}
 ),
 candidate AS (
@@ -29,6 +30,7 @@ output AS (
         vote.election_year,
         election_type,
         office_code,
+        office_code_description,
         district_code,
         status_code,
         vote.candidate_id,

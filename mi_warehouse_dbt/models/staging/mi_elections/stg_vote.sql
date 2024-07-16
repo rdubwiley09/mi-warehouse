@@ -22,22 +22,22 @@ WITH raw_vote AS (
 
 output AS (
     SELECT *,
-        CASE WHEN district_code=0 THEN 'Pollbook'
-            WHEN district_code=100 THEN 'President'
-            WHEN district_code=200 THEN 'Governor'
-            WHEN district_code=300 THEN 'SOS'
-            WHEN district_code=400 THEN 'AG'
-            WHEN district_code=500 THEN 'US Senator'
-            WHEN district_code=600 THEN 'US Congress'
-            WHEN district_code=700 THEN 'State Senator'
-            WHEN district_code=800 THEN 'State Representative'
-            WHEN district_code=900 THEN 'State BOE'
-            WHEN district_code=1000 THEN 'University of Michigan Board of Regents'
-            WHEN district_code=1100 THEN 'Michigan State University Board of Trustees'
-            WHEN district_code=1200 THEN 'Wayne State University Board of Governors'
-            WHEN district_code=1300 THEN 'Michigan Supreme Court'
-            WHEN district_code=9000 THEN 'Statewide Ballot Proposal'
-            ELSE 'Unknown' END AS district_code_description
+        CASE WHEN office_code=0 THEN 'Pollbook'
+            WHEN office_code=1 THEN 'President'
+            WHEN office_code=2 THEN 'Governor'
+            WHEN office_code=3 THEN 'SOS'
+            WHEN office_code=4 THEN 'AG'
+            WHEN office_code=5 THEN 'US Senator'
+            WHEN office_code=6 THEN 'US Congress'
+            WHEN office_code=7 THEN 'State Senator'
+            WHEN office_code=8 THEN 'State Representative'
+            WHEN office_code=9 THEN 'State BOE'
+            WHEN office_code=10 THEN 'University of Michigan Board of Regents'
+            WHEN office_code=11 THEN 'Michigan State University Board of Trustees'
+            WHEN office_code=12 THEN 'Wayne State University Board of Governors'
+            WHEN office_code=13 THEN 'Michigan Supreme Court'
+            WHEN office_code=90 THEN 'Statewide Ballot Proposal'
+            ELSE 'Unknown' END AS office_code_description
     FROM raw_vote
 )
 
