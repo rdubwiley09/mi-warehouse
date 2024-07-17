@@ -94,7 +94,7 @@
 This is the folder where we interact with the raw sources. Generally this is where we rename columns to nicer names and do the base level of data munging.
 
 #### Mart
-This is the folder 
+This is the folder for our main output of our transformations.
 
 #### ML
 This is a special folder where I give a proof of concept of running python ML models directlyl in dbt.
