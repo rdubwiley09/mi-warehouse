@@ -99,6 +99,13 @@ output AS (
         Rep AS republican_votes,
         Dem+Rep AS two_way_votes,
         1.0*Dem/(Dem+Rep) AS two_way_dem_percent,
+        CASE WHEN 1.0*Dem/(Dem+Rep) < 0.4 THEN 'Republican Safe'
+            WHEN 1.0*Dem/(Dem+Rep) < 0.45 THEN 'Strong Republican'
+            WHEN 1.0*Dem/(Dem+Rep) < 0.475 THEN 'Lean Republican'
+            WHEN 1.0*Dem/(Dem+Rep) BETWEEN 0.475 AND 0.525 THEN 'Toss-up'
+            WHEN 1.0*Dem/(Dem+Rep) < 0.55 THEN 'Lean Democrat'
+            WHEN 1.0*Dem/(Dem+Rep) < 0.6 THEN 'Strong Democrat'
+            ELSE 'Democratic Safe' END AS district_targeting,
         CASE WHEN Rep>Dem THEN 'Rep' ELSE 'Dem' END AS winning_party,
         CASE WHEN Rep>Dem THEN republican_first_name ELSE democrat_first_name END AS winning_first_name,
         CASE WHEN Rep>Dem THEN republican_last_name ELSE democrat_last_name END AS winning_last_name

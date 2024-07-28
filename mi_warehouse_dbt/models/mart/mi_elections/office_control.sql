@@ -1,4 +1,4 @@
-{{ config(materialized='external', location='../data/mart/mi_elections/office_control.parquet', format='parquet') }}
+{{ config(materialized='external', location='../data/mart/mi_elections/office_control.json', format='json') }}
 
 WITH election_results AS (
     SELECT
