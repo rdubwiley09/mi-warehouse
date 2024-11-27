@@ -12,10 +12,10 @@ from pylegiscan.pylegiscan import (
     convert_pylegiscan_json
 )
 
-GET_LEGISCAN_JSON = False
+GET_LEGISCAN_JSON = True
 
 legiscan_key = os.environ['LEGISCAN_API_KEY']
-access_key = "3qrkh1Mb5Hgg0K5a7z85RN&id=2027"
+access_key = "5DWcFIy2tAjgx6kK2hI3GM&id=2027"
 
 if GET_LEGISCAN_JSON:
     get_legiscan_json(legiscan_key, access_key, './data/raw/legiscan')
