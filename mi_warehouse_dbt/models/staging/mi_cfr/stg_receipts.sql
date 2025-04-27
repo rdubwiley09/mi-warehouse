@@ -4,7 +4,7 @@ WITH raw_receipts AS (
     SELECT *
     FROM
         read_parquet(
-            '../data/raw/*_mi_cfr_receipts.parquet', union_by_name = True
+            '../data/raw/mi_cfr/parquet/*_mi_cfr_receipts.parquet', union_by_name = True
         )
 ),
 

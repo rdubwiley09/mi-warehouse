@@ -26,7 +26,7 @@ WITH raw_contributions AS (
         round(try_cast(amount AS FLOAT), 2) AS contribution_amount
     FROM
         read_parquet(
-            '../data/raw/*_mi_cfr_contributions.parquet', union_by_name = TRUE
+            '../data/raw/mi_cfr/parquet/*_mi_cfr_contributions*.parquet', union_by_name = TRUE
         )
 ),
 

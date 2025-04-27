@@ -1,5 +1,5 @@
 {{ config(materialized='external', location='../data/mart/mi_elections/state_house_historic_with_drift.parquet', format='parquet') }}
-
+/*
 WITH historical AS (
     SELECT 
         district,
@@ -53,11 +53,11 @@ targeting_output AS (
 results AS (
     SELECT
         district,
-        winning_party AS winning_party_2022,
-        winning_first_name AS winning_first_name_2022,
-        winning_last_name AS winning_last_name_2022
+        winning_party AS winning_party_2024,
+        winning_first_name AS winning_first_name_2024,
+        winning_last_name AS winning_last_name_2024
     FROM {{ ref('election_results_by_district') }}
-    WHERE election_year = 2022 AND office_code = 8
+    WHERE election_year = 2024 AND office_code = 8
 ),
 output AS (
     SELECT
@@ -95,3 +95,4 @@ output AS (
 )
 
 SELECT * FROM output
+*/

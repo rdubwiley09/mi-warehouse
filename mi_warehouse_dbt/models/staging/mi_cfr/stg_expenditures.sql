@@ -28,7 +28,7 @@ WITH raw_expenditures AS (
         END AS expenditure_amount
     FROM
         read_parquet(
-            '../data/raw/*_mi_cfr_expenditures.parquet', union_by_name = TRUE
+            '../data/raw/mi_cfr/parquet/*_mi_cfr_expenditures.parquet', union_by_name = TRUE
         )
 ),
 
