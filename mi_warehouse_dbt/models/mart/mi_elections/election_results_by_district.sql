@@ -6,10 +6,10 @@ WITH votes_by_candidate AS (
         election_type,
         office_code,
         office_code_description,
-        district_code,
-        district_code/100 AS district,
+        TRY_CAST(district_code AS INTEGER) AS district_code,
+        TRY_CAST(district_code AS INTEGER)/100 AS district,
         status_code,
-        candidate_id,
+        TRY_CAST(candidate_id AS INTEGER) AS candidate_id,
         candidate_last_name,
         candidate_first_name,
         candidate_middle_name,
@@ -19,7 +19,7 @@ WITH votes_by_candidate AS (
         ward_number,
         precinct_number,
         precinct_label,
-        precinct_votes
+        TRY_CAST(precinct_votes AS INTEGER) AS precinct_votes
     FROM  {{ ref('int_vote_by_candidate') }}
     WHERE status_code=0
 ),
@@ -32,6 +32,7 @@ bad_district_eliminator AS (
         candidate_party_name,
         MIN(candidate_id) AS good_candidate_id
     FROM votes_by_candidate
+    WHERE candidate_id IS NOT NULL
     GROUP BY ALL
 ),
 district_grouped AS (

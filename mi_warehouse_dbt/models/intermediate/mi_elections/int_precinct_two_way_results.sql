@@ -7,7 +7,7 @@ WITH votes_by_candidate AS (
         office_code,
         office_code_description,
         district_code,
-        district_code/100 AS district,
+        TRY_CAST(district_code AS INTEGER)/100 AS district,
         status_code,
         candidate_id,
         candidate_last_name,
