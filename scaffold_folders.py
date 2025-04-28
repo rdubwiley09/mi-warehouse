@@ -11,7 +11,8 @@ NEEDED_FOLDERS = [
     './data/raw',
     './data/staging',
     './data/staging/lookups',
-    './data/raw/election_results'
+    './data/raw/election_results',
+    './data/raw/mi_cfr/zipped'
 ]
 
 def create_folders():

@@ -1,3 +1,6 @@
+### Need to grab election results from here: https://mvic.sos.state.mi.us/votehistory/
+### Need to grab campaign finance data from here: https://www.michigan.gov/sos/elections/disclosure/cfr/committee-search/intro/welcome-to-the-michigan-campaign-finance-searchable-database
+
 ## Simple Install Setup
     bash install.sh
 
