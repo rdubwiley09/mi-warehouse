@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "boring-semantic-layer>=0.1.8",
     "cloudpickle>=3.1.1",
     "dbt>=1.0.0.40.0",
     "dbt-duckdb>=1.9.3",
