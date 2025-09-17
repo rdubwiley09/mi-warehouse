@@ -34,9 +34,9 @@ class DistrictCodeDescriptions(str, Enum):
     Governor = 'Governor'
     SOS = 'SOS'
 
-class ElectionYear(int, Enum):
-    year_2022 = 2022
-    year_2024 = 2024
+class ElectionYear(str, Enum):
+    year_2022 = '2022'
+    year_2024 = '2024'
 
 
 def main(
@@ -45,11 +45,19 @@ def main(
     election_year_filters: Optional[List[ElectionYear]]=None, 
     district_code_filters: Optional[DistrictCodeDescriptions]=None
 ):
+    filters = []
+    if election_year_filters:
+        filters += [ lambda t: t.election_year == y.value for y in election_year_filters ]
+    if district_code_filters:
+        filters += [ lambda t: t.office_code_description == d for d in district_code_filters]
+    typer.echo(election_year_filters)
     result = mi_election_results_sm.query(
         dimensions = dimensions,
-        measures = measures
+        measures = measures,
+        filters = filters
     ).execute()
     typer.echo(result)
+    
 
 
 if __name__ == "__main__":
