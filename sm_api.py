@@ -2,6 +2,7 @@ from enum import Enum
 from typing import List, Optional
 from typing_extensions import Annotated
 
+import pandas as pd
 import typer
 
 from semantic_layer.models import mi_election_results_sm
@@ -43,22 +44,27 @@ def main(
     dimensions: Optional[List[Dimensions]]=[], 
     measures: Optional[List[Measures]]=[], 
     election_year_filters: Optional[List[ElectionYear]]=None, 
-    district_code_filters: Optional[DistrictCodeDescriptions]=None
+    district_code_filters: Optional[List[DistrictCodeDescriptions]]=None
 ):
     filters = []
     if election_year_filters:
         filters += [ lambda t: t.election_year == y.value for y in election_year_filters ]
     if district_code_filters:
-        filters += [ lambda t: t.office_code_description == d for d in district_code_filters]
-    typer.echo(election_year_filters)
-    result = mi_election_results_sm.query(
+        filters += [{
+            'operator': 'AND',
+            'conditions': [
+                {'field': 'office_code_description', 'operator': 'in', 'values': [ d.value for d in district_code_filters ]}
+            ]
+        }]
+    query = mi_election_results_sm.query(
         dimensions = dimensions,
         measures = measures,
-        filters = filters
-    ).execute()
+        filters = filters,
+        limit=5
+    ).to_ibis().to_pandas_batches()
+    result = pd.concat([ item for item in query])
     typer.echo(result)
     
-
 
 if __name__ == "__main__":
     typer.run(main)

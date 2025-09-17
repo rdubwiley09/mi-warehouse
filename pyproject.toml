@@ -16,6 +16,7 @@ dependencies = [
     "numpy>=2.2.5",
     "pandas>=2.2.3",
     "py7zr>=0.22.0",
+    "pyarrow>=21.0.0",
     "streamlit>=1.44.1",
     "tqdm>=4.67.1",
     "typer>=0.17.4",
