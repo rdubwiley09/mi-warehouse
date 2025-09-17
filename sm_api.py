@@ -4,6 +4,8 @@ from typing_extensions import Annotated
 
 import typer
 
+from semantic_layer.models import mi_election_results_sm
+
 
 class Dimensions(str, Enum):
     election_year = 'election_year'
@@ -32,15 +34,22 @@ class DistrictCodeDescriptions(str, Enum):
     Governor = 'Governor'
     SOS = 'SOS'
 
+class ElectionYear(int, Enum):
+    year_2022 = 2022
+    year_2024 = 2024
+
 
 def main(
     dimensions: Optional[List[Dimensions]]=[], 
     measures: Optional[List[Measures]]=[], 
-    filters: Optional[DistrictCodeDescriptions]=None
+    election_year_filters: Optional[List[ElectionYear]]=None, 
+    district_code_filters: Optional[DistrictCodeDescriptions]=None
 ):
-    typer.echo(dimensions)
-    typer.echo(measures)
-    typer.echo(filters)
+    result = mi_election_results_sm.query(
+        dimensions = dimensions,
+        measures = measures
+    ).execute()
+    typer.echo(result)
 
 
 if __name__ == "__main__":
