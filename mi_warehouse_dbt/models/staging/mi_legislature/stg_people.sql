@@ -4,7 +4,7 @@ WITH raw_people AS (
     SELECT *
     FROM
         read_parquet(
-            '../data/raw/legiscan/2023-2024_102nd_Legislature/parsed/people.parquet', union_by_name = True
+            '../data/raw/legiscan/*/parsed/people.parquet', union_by_name = True
         )
 ),
 output AS (
