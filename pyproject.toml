@@ -5,13 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "boring-semantic-layer>=0.1.8",
+    "boring-semantic-layer[examples]>=0.1.8",
     "cloudpickle>=3.1.1",
     "dbt>=1.0.0.40.0",
     "dbt-duckdb>=1.9.3",
     "duckdb>=1.2.2",
     "fastparquet>=2024.11.0",
-    "ibis-framework[duckdb]>=10.8.0",
     "mcp>=1.13.1",
     "numpy>=2.2.5",
     "pandas>=2.2.3",
