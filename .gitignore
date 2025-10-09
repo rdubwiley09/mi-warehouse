@@ -1,4 +1,5 @@
 .env
+.venv
 venv/
 new_venv/
 data/

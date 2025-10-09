@@ -56,11 +56,11 @@ def main(
                 {'field': 'office_code_description', 'operator': 'in', 'values': [ d.value for d in district_code_filters ]}
             ]
         }]
+    #Using filters creates a bug with boring-semantic-layer so here's a workaround
     query = mi_election_results_sm.query(
         dimensions = dimensions,
         measures = measures,
-        filters = filters,
-        limit=5
+        filters = filters
     ).to_ibis().to_pandas_batches()
     result = pd.concat([ item for item in query])
     typer.echo(result)

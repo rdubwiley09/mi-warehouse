@@ -13,16 +13,17 @@ from pylegiscan.pylegiscan import (
 )
 
 GET_LEGISCAN_JSON = True
+LEGISLATURE_TITLE = "2025-2026_103rd_Legislature"
 
 legiscan_key = os.environ['LEGISCAN_API_KEY']
-access_key = "5DWcFIy2tAjgx6kK2hI3GM&id=2027"
+access_key = os.environ['LEGISCAN_ACCESS_KEY']
 
 if GET_LEGISCAN_JSON:
     get_legiscan_json(legiscan_key, access_key, './data/raw/legiscan')
 
 convert_pylegiscan_json(
-    './data/raw/legiscan/2023-2024_102nd_Legislature/people',
-    './data/raw/legiscan/2023-2024_102nd_Legislature/bill',
-    './data/raw/legiscan/2023-2024_102nd_Legislature/vote',
-    './data/raw/legiscan/2023-2024_102nd_Legislature/parsed',
+    f'./data/raw/legiscan/{LEGISLATURE_TITLE}/people',
+    f'./data/raw/legiscan/{LEGISLATURE_TITLE}/bill',
+    f'./data/raw/legiscan/{LEGISLATURE_TITLE}/vote',
+    f'./data/raw/legiscan/{LEGISLATURE_TITLE}/parsed',
 )
