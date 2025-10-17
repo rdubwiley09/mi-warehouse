@@ -22,11 +22,25 @@ NEEDED_BILL_DATA = [
     'committee'
 ]
 
-
-def get_legiscan_json(legiscan_key, access_key, out_dir):
-    url = f"https://api.legiscan.com/?key={legiscan_key}&op=getDataset&access_key={access_key}"
+def get_access_key(legiscan_key, start_year):
+    url = f"https://api.legiscan.com/?key={legiscan_key}&op=getDatasetList&state=MI"
     response = requests.get(url, stream=True)
     data = response.json()
+    try:
+        for item in data['datasetlist']:
+            if item['year_start'] == start_year:
+                return item['access_key'], item['session_id']
+        raise Exception("Start year not found")
+    except Exception:
+        raise Exception("Can't find the access key")
+
+
+def get_legiscan_json(legiscan_key, access_key, session_id, out_dir):
+    url = f"https://api.legiscan.com/?key={legiscan_key}&op=getDataset&access_key={access_key}&id={session_id}"
+    response = requests.get(url, stream=True)
+    data = response.json()
+    if 'dataset' not in data:
+        raise Exception("Did not get dataset, check your inputs")
     zip_data = data['dataset']['zip']
     base64_bytes = zip_data.encode('ascii')
     message_bytes = base64.b64decode(base64_bytes)
